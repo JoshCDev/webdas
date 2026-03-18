@@ -1,0 +1,54 @@
+body{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+     background-color: #f4f4f4;
+     margin: 0;
+     height:1500px
+}
+
+#header-blog{
+    background-color: #1a237e;
+    color: white;
+    text-align: center;
+    padding: 30px;
+}
+
+#navigasi-utama{
+    background-color: #ffca28;
+    position: sticky;
+    top: 0;
+    text-align: center;
+    font-weight: bold;
+}
+
+#navigasi-utama ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 15px;
+}
+
+#navigasi-utama ul li{
+    display: inline;
+}
+
+#navigasi-utama ul li a{
+    color: black;
+    text-decoration: none;
+    padding: 15px 20px;
+}
+
+#navigasi-utama ul li a:hover{
+    background-color: white;
+}
+
+.artikel-konten{
+    margin-left: 100px;
+    margin-right: 100px;
+    background-color: white;
+    padding: 25px;
+    border-radius: 8px;
+    margin-top: 30px;
+}
+
+.teks-rahasia{
+    visibility: hidden;
+}

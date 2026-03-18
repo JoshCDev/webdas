@@ -1,0 +1,142 @@
+@import
+url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+*,
+*::before,
+*::after {
+ box-sizing: border-box;
+ margin: 0;
+ padding: 0;
+ font-family: 'Nunito', sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+/* Kartu utama: parent semua elemen absolute */
+.kartu-produk {
+ position: relative;
+ width: 260px;
+ background: #ffffff;
+ border-radius: 16px;
+ overflow: hidden;
+ box-shadow: 0 4px 20px rgba(0,0,0,0.10);
+ padding:10px
+}
+/* Area gambar: parent label dan badge di atas gambar */
+.kotak-gambar {
+ position: relative;
+ width: 100%;
+ height: 180px;
+ background: #E8F0FE;
+ text-align: center;
+}
+
+/* Label diskon: pojok kiri atas gambar */
+.label-diskon {
+ position: absolute;
+ top: 12px;
+ left: 12px;
+ background-color: #E63946;
+ color: white;
+ font-size: 12px;
+ padding: 4px 8px;
+ border-radius: 4px;
+ font-weight: bold;
+}
+
+/* Label baru: pojok kanan atas gambar */
+.label-baru {
+ position: absolute;
+ top: 12px;
+ right: 12px;
+ background-color: #3B5BDB;
+ color: white;
+ font-size: 12px;
+ padding: 4px 8px;
+ border-radius: 4px;
+ font-weight: bold;
+}
+
+/* Badge terjual: pojok kiri bawah gambar */
+.badge-terjual {
+ position: absolute;
+ bottom: 10px;
+ left: 12px;
+ background-color: rgba(0, 0, 0, 0.6);
+ color: white;
+ font-size: 12px;
+ padding: 4px 8px;
+ border-radius: 4px;
+}
+
+/* Baris harga: harga diskon + harga asli berdampingan */
+.baris-harga {
+ overflow: hidden;
+ margin-bottom: 10px;
+}
+.harga-diskon { float: left; color: #E63946; font-size: 16px; font-weight: bold; }
+.harga-asli {
+    float: left;
+    margin-left: 8px;
+    color: #AAAAAA;
+    font-size: 12px;
+    text-decoration: line-through;
+}
+
+/* Baris rating: bintang + jumlah ulasan berdampingan */
+.baris-rating {
+ overflow: hidden;
+ margin-bottom: 14px;
+}
+.bintang { float: left; }
+.jumlah-ulasan { float: left; margin-left: 6px; }
+
+.tombol-keranjang {
+ display: block;
+ width: 100%;
+ padding: 10px 0;
+ background-color: #3B5BDB;
+ color: white;
+ text-align: center;
+ border-radius: 8px;
+ border: 0px solid;
+ text-decoration: none;
+ font-weight: bold;
+}
+
+.bintang{
+    color: #F59E0B;
+    font-size: 12px;
+}
+
+.jumlah-ulasan{
+    color: #AAAAAA;
+    font-size: 14px;
+}
+
+.ikon-produk{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    font-size: 72px;
+    text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+
+.nama-produk{
+    font-size: 14px;
+    font-weight: bold;
+    color: #1A1A2E;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}

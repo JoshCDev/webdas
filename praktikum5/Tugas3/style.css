@@ -1,0 +1,104 @@
+body{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #fdf5e6;
+    margin: 0;
+    padding: 0;
+    height:120vh;
+    overflow-y: scroll;
+}
+
+.header{
+    background-color: #d9534f;
+    color: white;
+    text-align: center;
+    line-height: 60px;
+    box-shadow: 0 2px 5px black;
+}
+
+.main{
+    background-color: white;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 4px 15px black;
+    width: fit-content;
+    border-radius: 20px;
+    width: 30%;
+    margin: 0 auto;
+    padding: 0 25px;
+}
+
+.main h2{
+    color:#e63946;
+    text-align: center;
+}
+
+.main h3{
+    color: #f19c1f;
+    border-left: 5px solid #f19c1f;
+    padding-left: 5px;
+}
+
+.main p,ul,ol{
+    color: #444;
+    line-height: 1.6
+}
+
+.main p.kosong{
+    border-top: 1px dashed #ccc;
+    height: 15vh;
+}
+
+.discount{
+    position: sticky;
+    top:0px;
+    background-color: #76b947;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 2px 4px black;
+    border-radius: 15px;
+    padding: 10px;
+    margin: 20px -25px 0 -25px;
+    text-align: center;
+}
+
+.secret{
+    position: fixed;
+    background-color: #402D26;
+    color: white;
+    z-index: 0;
+    border-radius: 50px;
+    text-align: center;
+    left:35%;
+    width: 30%;
+    bottom:10px;
+    margin: 0 auto;
+    padding:10px;
+}
+
+.secret:hover{
+    background-color: #f19c1f;
+}
+
+
+table, td, tr{
+    border-collapse: collapse;
+    margin:0 auto;
+}
+
+td{
+    width:18px;
+    height:18px;
+    background-color: white;
+}
+
+td.r{
+    background-color: #e63946;
+}
+
+td.y{
+    background-color: #ffcc00;
+}
+
+td.c{
+    background-color: #402D26;
+}
