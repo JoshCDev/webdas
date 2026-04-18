@@ -1,0 +1,47 @@
+body { background: #f8f9fa; }
+.nav-icon { width: 18px; height: 18px; vertical-align: middle; }
+.nav-icon-bell { margin-top: -2px; margin-right: 4px; }
+.hero-section { background: linear-gradient(135deg, #6f98ff, #b57cff); }
+.hero-row { min-height: 500px; }
+.hero-copy { max-width: 640px; }
+.hero-title { font-size: 4rem; line-height: 1.12; }
+.hero-text { max-width: 520px; color: rgba(255,255,255,.65); font-size: 1rem; }
+.hero-illustration { font-size: 108px; line-height: 1; text-shadow: 0 12px 20px rgba(13, 110, 253, .18); }
+.section-space { margin-bottom: 2.5rem; }
+.section-title { font-size: 1.25rem; font-weight: 700; color: #212529; }
+.promo-carousel img { height: 320px; }
+.promo-carousel .carousel-caption { top: 0; bottom: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+.promo-carousel .display-5 { font-size: 1.25rem; }
+.promo-carousel p { font-size: .8rem; }
+.promo-icon { font-size: 4rem; line-height: 1; }
+.product-media { height: 150px; }
+.product-icon { font-size: 3.6rem; line-height: 1; }
+.product-desc { font-size: .9rem; }
+.price-text { color: #212529 !important; }
+.old-price { color: #495057; text-decoration: line-through; font-size: 1rem; }
+.product-btn-green { background-color: #198754; border-color: #198754; }
+.product-btn-green:hover { background-color: #198754; border-color: #198754; }
+.product-btn-yellow { background-color: #ffc107; border-color: #ffc107; }
+.product-btn-yellow:hover { background-color: #ffc107; border-color: #ffc107; }
+.product-card { transition: transform .3s, box-shadow .3s; }
+.product-card:hover { transform: translateY(-5px); box-shadow: 0 .5rem 1rem rgba(0,0,0,.15); }
+#faqAccordion .accordion-button, #faqAccordion .accordion-button:not(.collapsed) { background: #dbeafe; color: #0f172a; font-weight: 600; box-shadow: none; }
+#faqAccordion .accordion-body { color: #495057; }
+.about-card { background: #fff; }
+.toast-stack { z-index: 1100; }
+
+@media (max-width: 991px) {
+  .hero-section { text-align: center; }
+  .hero-copy, .hero-text { margin-left: auto; margin-right: auto; }
+  .hero-row { min-height: auto; gap: 1.5rem; }
+  .hero-title { font-size: 3.2rem; }
+  .hero-illustration { font-size: 96px; }
+}
+
+@media (max-width: 767px) {
+  .hero-title { font-size: 2.7rem; }
+  .hero-illustration { font-size: 82px; }
+  .promo-carousel img { height: 280px; }
+  .promo-carousel .carousel-caption { padding-left: 40px; padding-right: 40px; }
+  .promo-icon { font-size: 3.25rem; }
+}

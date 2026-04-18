@@ -1,0 +1,203 @@
+<!-- 2572001 - Joshua Christopher Gunawan -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EduSkill - 2572001</title>
+    <style>
+      .courses-grid .row {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+      }
+
+      .courses-grid .row > div {
+        width: auto;
+        max-width: none;
+        padding: 0;
+      }
+
+      .course-card {
+        transition: transform 0.3s;
+      }
+
+      .course-card:hover {
+        transform: translateY(-5px);
+      }
+
+      @media (max-width: 900px) {
+        .courses-grid .row {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .nav-cta {
+          display: none;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .courses-grid .row {
+          grid-template-columns: 1fr;
+        }
+
+        .navbar {
+          flex-direction: column;
+          gap: 15px;
+        }
+
+        .hero {
+          padding-top: 2rem !important;
+          padding-bottom: 2rem !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav
+      class="navbar navbar-expand-lg bg-light container-fluid justify-content-between px-5 sticky-top"
+    >
+      <div class="logo fw-bold text-primary fs-4">EduSkill</div>
+      <ul class="nav-links d-flex gap-4 list-unstyled mb-0">
+        <li>
+          <a
+            href="#"
+            class="text-decoration-none nav-link active text-dark fw-semibold"
+            aria-current="page"
+            >Beranda</a
+          >
+        </li>
+        <li>
+          <a href="#" class="text-decoration-none nav-link text-secondary"
+            >Daftar Kelas</a
+          >
+        </li>
+        <li>
+          <a href="#" class="text-decoration-none nav-link text-secondary"
+            >Mentor</a
+          >
+        </li>
+      </ul>
+      <button class="btn btn-primary px-4 nav-cta">Daftar Sekarang</button>
+    </nav>
+    <section
+      class="hero container-fluid text-center py-5 bg-primary text-white"
+    >
+      <h1 class="fw-bold lh-base">Tingkatkan Karirmu di Dunia Digital</h1>
+      <p>
+        Akses ratusan materi pembelajaran dari mentor berpengalaman di industri.
+      </p>
+      <div class="hero-buttons d-flex justify-content-center gap-3 mt-4">
+        <button class="btn btn-light text-primary fw-bold">
+          Jelajahi Kelas
+        </button>
+        <button class="btn btn-outline-light">Pelajari Sistemnya</button>
+      </div>
+    </section>
+    <section class="courses-section container-fluid text-center py-5 bg-light">
+      <h2 class="fw-bold">Kelas Populer Bulan Ini</h2>
+      <p>Pilih kelas yang sesuai dengan minatmu</p>
+      <div class="courses-grid container mt-4">
+        <div class="row g-3 g-lg-4">
+        <div class="col-md-4">
+          <div class="card h-100 course-card">
+            <div
+              class="card-body text-start d-flex flex-column align-items-start"
+            >
+              <span class="badge text-bg-success mb-2">Pemula</span>
+              <h3 class="fw-bold fs-5">Fullstack Web Development</h3>
+              <p>
+                Belajar membuat website dari nol menggunakan HTML, CSS, JS, dan
+                PHP.
+              </p>
+              <span class="fw-bold mb-3 text-primary">Rp 499.000</span>
+              <button class="btn w-100 btn-outline-primary">Lihat Silabus</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card h-100 course-card">
+            <div
+              class="card-body text-start d-flex flex-column align-items-start"
+            >
+              <span class="badge text-bg-warning mb-2">Menengah</span>
+              <h3 class="fw-bold fs-5">Data Analytics for Business</h3>
+              <p>
+                Kuasai pengolahan data menggunakan Python dan buat visualisasi
+                menarik.
+              </p>
+              <span class="fw-bold mb-3 text-primary">Rp 599.000</span>
+              <button class="btn w-100 btn-outline-primary">Lihat Silabus</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card h-100 course-card">
+            <div
+              class="card-body text-start d-flex flex-column align-items-start"
+            >
+              <span class="badge text-bg-success mb-2">Pemula</span>
+              <h3 class="fw-bold fs-5">UI/UX Design Mastery</h3>
+              <p>
+                Pahami riset pengguna dan buat desain antarmuka aplikasi
+                menggunakan Figma.
+              </p>
+              <span class="fw-bold mb-3 text-primary">Rp 450.000</span>
+              <button class="btn w-100 btn-outline-primary">Lihat Silabus</button>
+            </div>
+          </div>
+        </div>
+    </div>
+      </div>
+    </section>
+    
+    <div class="testimony container-fluid text-center bg-light">
+    <h3 class="fw-bold">Apa Kata Mereka?</h3>
+    <div id="textCarousel" class="carousel slide carousel-dark" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="p-4 text-center bg-light">
+            <p class="fst-italic">"Berkat kelas UI/UX, saya berhasil mendapatkan pekerjaan pertama saya sebagai desainer."</p>
+              <h6>- Sarah, UI Designer</h6>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <div class="p-4 text-center bg-light">
+                <p class="fst-italic">"Berkat kelas Data Analytics, saya berhasil mendapatkan pekerjaan pertama saya sebagai analis data."</p>
+                <h6>- John, Data Analyst</h6>
+            </div>
+          </div>
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#textCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon rounded-circle bg-dark" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#textCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon rounded-circle bg-dark" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+      </div>
+      
+    <footer class="footet container-fluid text-center pt-3">
+      <p>
+        &copy; 2026 2572001 Joshua Christopher Gunawan. All rights reserved.
+      </p>
+    </footer>
+  </body>
+</html>
