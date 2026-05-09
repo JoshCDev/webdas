@@ -1,0 +1,136 @@
+<!-- 2572001 - Joshua Christopher Gunawan -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game - 2572001</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        #game{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 12px;
+            height: 100vh;
+        }
+
+        #utama{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .btn{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        img{
+            width: 160px;
+            height: 160px;
+            object-fit: contain;
+        }
+
+        #hasil{
+            height: 10px;
+        }
+
+        #area, #hasil{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="game">
+    <div id="area"></div>
+        <div class="btn">
+            <button onclick="pilih('Batu')">🪨</button>
+            <button onclick="pilih('Gunting')">✂️</button>
+            <button onclick="pilih('Kertas')">📜</button>
+    </div>
+        <div id="hasil"></div>
+    </div>
+
+    <script>
+        var computer_score = 0;
+        var player_score = 0;
+        var sudah_mulai = false;
+
+        function buatAreaGame(){
+            if (sudah_mulai == true) {
+                return;
+            }
+            else{
+            document.getElementById('area').innerHTML =
+                '<div id="utama">' +
+                    '<img id="ply_img">' +
+                    '<span id="score">0 - 0</span>' +
+                    '<img id="com_img">' +
+                '</div>';
+            document.getElementById('area').style.display = 'flex';
+            document.getElementById('hasil').style.display = 'flex';
+            sudah_mulai = true;
+        }
+    }
+
+        function pilih(player){
+            buatAreaGame();
+
+            var computer = computer_pilih();
+            var result = tentukan_pemenang(player, computer);
+
+            if (player == 'Batu') {
+                document.getElementById('ply_img').src = 'rock.png';
+            } else if (player == 'Gunting') {
+                document.getElementById('ply_img').src = 'scissor.png';
+            } else {
+                document.getElementById('ply_img').src = 'paper.png';
+            }
+
+            if (computer == 'Batu') {
+                document.getElementById('com_img').src = 'rock.png';
+            } else if (computer == 'Gunting') {
+                document.getElementById('com_img').src = 'scissor.png';
+            } else {
+                document.getElementById('com_img').src = 'paper.png';
+            }
+
+            document.getElementById('score').textContent = player_score + ' - ' + computer_score;
+            document.getElementById('hasil').textContent = result;
+        }
+
+        function computer_pilih(){
+            var opsi = ['Batu', 'Gunting', 'Kertas'];
+            return opsi[Math.floor(Math.random() * opsi.length)];
+        }
+
+        function tentukan_pemenang(player, computer){
+            if (player == computer) {
+                return 'DRAW!';
+            } else if (player == 'Batu' && computer == 'Gunting') {
+                player_score++;
+                return 'PLAYER WIN!';
+            } else if (player == 'Gunting' && computer == 'Kertas') {
+                player_score++;
+                return 'PLAYER WIN!';
+            } else if (player == 'Kertas' && computer == 'Batu') {
+                player_score++;
+                return 'PLAYER WIN!';
+            } else {
+                computer_score++;
+                return 'BOT WIN!';
+            }
+        }
+    </script>
+</body>
+</html>
