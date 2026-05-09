@@ -1,0 +1,218 @@
+<!-- 2572001 - Joshua Christopher Gunawan -->
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GenRGB - 2572001</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: white;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .card {
+        width: 300px;
+        background: white;
+        box-sizing: border-box;
+        text-align: center;
+        border-radius: 8px;
+        padding: 26px 18px 15px 18px;
+        box-shadow: 0 16px 35px rgba(0, 0, 0, 0.16);
+      }
+
+      h1 {
+        font-size: 20px;
+        margin: 0 0 15px 0;
+      }
+
+      .rgb-group {
+        gap: 9px;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 11px;
+      }
+
+      .rgb-input {
+        width: 50px;
+        font-weight: bold;
+        text-align: center;
+        border: 1px solid #ddd;
+        height: 24px;
+        border-radius: 4px;
+        font-size: 11px;
+        box-sizing: border-box;
+      }
+
+      .btn-container {
+        margin: 8px 0;
+        display: flex;
+        gap: 8px;
+        justify-content: center;
+      }
+
+      button {
+        color: black;
+        border: 0;
+        cursor: pointer;
+        font-size: 10px;
+        font-weight: bold;
+        padding: 6px 10px;
+        border-radius: 5px;
+        background-color: #eee;
+      }
+
+      .display-area {
+        font-size: 12px;
+        margin: 10px 0 9px 0;
+        padding: 10px 0 11px 0;
+        border: 1px solid #eee;
+        border-radius: 8px;
+        color: #777;
+      }
+
+      #counter {
+        margin-top: 5px;
+        font-size: 32px;
+        color: black;
+        font-weight: bold;
+      }
+
+      .btn-reset {
+        margin-top: 1px;
+      }
+
+      .footer {
+        color: #777;
+        font-size: 7px;
+        margin-top: 14px;
+        padding-top: 11px;
+        border-top: 1px solid #eee;
+        white-space: nowrap;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1>RGB Control Panel</h1>
+
+      <div class="rgb-group">
+        <input
+          type="number"
+          id="r"
+          class="rgb-input"
+          placeholder="R"
+          min="0"
+          max="255"
+        />
+        <input
+          type="number"
+          id="g"
+          class="rgb-input"
+          placeholder="G"
+          min="0"
+          max="255"
+        />
+        <input
+          type="number"
+          id="b"
+          class="rgb-input"
+          placeholder="B"
+          min="0"
+          max="255"
+        />
+      </div>
+
+      <div class="btn-container">
+        <button class="btn-submit" onclick="terapkanWarna()">Terapkan</button>
+        <button class="btn-random" onclick="acakWarna()">Acak Warna</button>
+      </div>
+
+      <div class="display-area">
+        <div>Skor Saat Ini:</div>
+        <div id="counter">0</div>
+      </div>
+
+      <div class="btn-container">
+        <button class="btn-add" onclick="hitungSkor(1)">Tambah (+1)</button>
+        <button class="btn-remove" onclick="hitungSkor(-1)">Kurang (-1)</button>
+      </div>
+
+      <button class="btn-reset" onclick="resetDefault()">
+        Reset Ke Default
+      </button>
+
+      <div class="footer">
+        <strong
+          >&copy; 2026 2572001 - Joshua Christopher Gunawan. All rights
+          reserved.</strong
+        >
+      </div>
+    </div>
+
+    <script>
+      var score_nilai = 0;
+
+      function ambil_rgb(apa_id) {
+        var isiRgb = document.getElementById(apa_id).value;
+
+        if (isiRgb == "") {
+          isiRgb = 0;
+        }
+
+        isiRgb = parseInt(isiRgb);
+
+        if (isiRgb < 0) {
+          isiRgb = 0;
+        }
+
+        if (isiRgb > 255) {
+          isiRgb = 255;
+        }
+
+        return isiRgb;
+      }
+
+      function terapkanWarna() {
+        var r = ambil_rgb("r");
+        var g = ambil_rgb("g");
+        var b = ambil_rgb("b");
+
+        document.body.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+      }
+
+      function acakWarna() {
+        var r = Math.floor(Math.random() * 256);
+        var g = Math.floor(Math.random() * 256);
+        var b = Math.floor(Math.random() * 256);
+        var warna_jadi = `rgb(${r}, ${g}, ${b})`;
+
+        document.getElementById("r").value = r;
+        document.getElementById("g").value = g;
+        document.getElementById("b").value = b;
+        document.body.style.backgroundColor = warna_jadi;
+      }
+
+      function hitungSkor(nilai) {
+        score_nilai = score_nilai + nilai;
+        document.getElementById("counter").textContent = score_nilai;
+      }
+
+      function resetDefault() {
+        document.body.style.backgroundColor = "white";
+        document.getElementById("r").value = "";
+        document.getElementById("g").value = "";
+        document.getElementById("b").value = "";
+
+        score_nilai = 0;
+        document.getElementById("counter").textContent = score_nilai;
+      }
+    </script>
+  </body>
+</html>

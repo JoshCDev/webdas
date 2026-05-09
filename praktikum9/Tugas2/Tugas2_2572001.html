@@ -1,0 +1,128 @@
+<!-- 2572001 - Joshua Christopher Gunawan -->
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz - 2572001</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: white;
+        color: black;
+        display: flex;
+        flex-direction: column;
+      }
+
+      main {
+        padding: 28px 30px;
+        box-sizing: border-box;
+      }
+
+      h1 {
+        margin: 0 0 22px 0;
+        font-size: 34px;
+        font-weight: bold;
+      }
+
+      p {
+        font-size: 16px;
+        margin: 0 0 15px 0;
+      }
+
+      button {
+        font-size: 14px;
+        padding: 2px 7px;
+      }
+
+      h2 {
+        margin: 20px 0 16px 0;
+        font-size: 25px;
+      }
+
+      #datetime {
+        margin-top: 0;
+      }
+
+      footer {
+        font-size: 12px;
+        margin-top: auto;
+        padding: 10px 20px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Quiz Matematika</h1>
+      <p>
+        Klik tombol di bawah untuk mulai mengerjakan soal matematika acak. Ketik
+        "exit" atau tekan Cancel untuk berhenti.
+      </p>
+      <button onclick="mulaiQuiz()">Mulai Quiz</button>
+      <h2 id="result"></h2>
+      <p id="datetime"></p>
+    </main>
+
+    <footer>2572001 - Joshua Christopher Gunawan</footer>
+
+    <script>
+      function mulaiQuiz() {
+        const operasi = ["+", "-", "*"];
+        var score = 0;
+        var qs_qty = 0;
+
+        while (true) {
+          var angka1 = Math.floor(Math.random() * 20) + 1;
+          var angka2 = Math.floor(Math.random() * 20) + 1;
+          var operator = operasi[Math.floor(Math.random() * operasi.length)];
+          var jawaban;
+
+          if (operator == "+") {
+            jawaban = angka1 + angka2;
+          } else if (operator == "-") {
+            jawaban = angka1 - angka2;
+          } else {
+            jawaban = angka1 * angka2;
+          }
+
+          var inputUser = prompt(
+            "Berapa hasil dari " +
+              angka1 +
+              " " +
+              operator +
+              " " +
+              angka2 +
+              " ?",
+          );
+
+          if (inputUser == null || inputUser.toLowerCase() == "exit") {
+            break;
+          }
+
+          var jawabanUser = parseFloat(inputUser);
+          qs_qty++;
+
+          if (Math.abs(jawabanUser - jawaban) < 0.01) {
+            score++;
+            alert("Benar!");
+          } else {
+            alert("Salah, jawaban yang benar adalah " + jawaban);
+          }
+        }
+
+        var showres = confirm("Apakah kamu ingin menampilkan hasil?");
+
+        if (showres) {
+          document.getElementById("result").textContent =
+            "Skor Akhir: " + score + " / " + qs_qty;
+          document.getElementById("datetime").textContent =
+            "Selesai pada: " + new Date().toLocaleString();
+        }
+      }
+    </script>
+  </body>
+</html>
