@@ -1,0 +1,168 @@
+<!-- 2572001 - Joshua Christopher Gunawan -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game - 2572001</title>
+    <style>
+        body{
+            background-color: black;
+            color:white;
+            margin:0;
+            overflow: hidden;
+            font-family: sans-serif;
+        }
+
+        #start{
+            margin-top: 20px;
+            width:80px;
+            height: 80px;
+            border: 1px solid white;
+            background-color: black;
+            color: white;
+            cursor: pointer;
+        }
+        #timer{
+            margin-top: 20px;
+            color: yellow;
+        }
+
+        #top{
+            text-align: center;
+        }
+
+        #output {
+            width: 100vw;
+            height: calc(100vh - 150px);
+            position: relative;
+        }
+
+        .box{
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            display: none;
+            cursor: pointer;
+            border: 1px solid white;
+        }
+    </style>
+</head>
+<body>
+    <div id="top">
+    <p id="info">Press the box to start!</p>
+    <span id="timer">Time: 30s</span><br>
+    <button id="start">START</button>
+    </div>
+    <div id="output">
+
+    </div>
+    <script>
+        const start = document.getElementById("start");
+        const info = document.getElementById("info");
+        const timer = document.getElementById("timer");
+        const output = document.getElementById("output");
+        const box = document.createElement("div");
+
+        let timeLeft = 30;
+        let clicks = 0;
+        let gameTimer;
+        let isPlaying = false;
+        let replayReady = false;
+
+        box.classList.add("box");
+        output.appendChild(box);
+
+
+        function randomNumbers(max) {
+            return Math.floor(Math.random() * max);
+        }
+
+        function addBox() {
+
+            const dimX = randomNumbers(50) + 10;
+			const dimY = randomNumbers(50) + 10;
+
+            box.style.display = "block";
+            box.style.width = `${dimX}px`;
+            box.style.height = `${dimY}px`;
+            box.style.backgroundColor = "#" + Math.random().toString(16).substr(-6);
+
+            // Pastikan posisi tetap di dalam kontainer output
+            box.style.left = randomNumbers(900) + "px";
+            box.style.top = randomNumbers(600) + "px";
+            box.style.borderRadius = randomNumbers(50) + "%";
+        }
+
+        function showReplayBox() {
+            replayReady = true;
+            box.style.display = "block";
+            box.style.width = "80px";
+            box.style.height = "50px";
+            box.style.left = "calc(50% - 40px)";
+            box.style.top = "10px";
+            box.style.borderRadius = "0";
+            box.style.backgroundColor = "#826b04";
+            box.style.color = "white";
+            box.style.textAlign = "center";
+            box.style.lineHeight = "50px";
+            box.textContent = "AGAIN?";
+        }
+
+        function updateDisplay() {
+            timer.textContent = "Time: " + timeLeft + "s";
+            info.textContent = "Total Clicks: " + clicks;
+        }
+
+        function startGame() {
+            clearInterval(gameTimer);
+            timeLeft = 30;
+            clicks = 0;
+            isPlaying = true;
+            replayReady = false;
+            start.style.display = "none";
+            box.textContent = "";
+            box.style.color = "";
+            box.style.textAlign = "";
+            box.style.lineHeight = "";
+            updateDisplay();
+            addBox();
+
+            gameTimer = setInterval(() => {
+                timeLeft--;
+                updateDisplay();
+
+                if (timeLeft <= 0) {
+                    endGame();
+                }
+            }, 1000);
+        }
+
+        function endGame() {
+            clearInterval(gameTimer);
+            isPlaying = false;
+            info.textContent = "Total Click: " + clicks;
+            timer.textContent = "Time: 0s";
+            start.style.display = "none";
+            showReplayBox();
+        }
+
+        start.addEventListener("click", startGame);
+
+        box.addEventListener("click", () => {
+            if (replayReady == true) {
+                startGame();
+                return;
+            }
+
+            if (isPlaying == false) {
+                return;
+            }
+
+            clicks++;
+            updateDisplay();
+            addBox();
+        });
+    </script>
+</body>
+</html>

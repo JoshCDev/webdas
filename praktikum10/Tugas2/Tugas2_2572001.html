@@ -1,0 +1,126 @@
+<!-- 2572001 - Joshua Christopher Gunawan -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator - 2572001</title>
+    <style>
+        body{
+            width: 100vh;
+            margin: 0 auto;
+        }
+
+        #calc{
+            border: 1px solid black;
+            padding: 0px 20px;
+            width: 60%;
+            margin: 20px auto;
+            background-color: beige;
+            border-radius: 10px;
+        }
+
+        #res_container{
+            border: 1px solid brown;
+            padding: 0px 10px;
+            width: 90%;
+            margin: 20px auto;
+            background-color: beige;
+            border-radius: 10px;
+        }
+
+        label{
+            font-weight: bold;
+        }
+
+        footer{
+            font-weight: bold;
+        }
+
+        input{
+            width: 95%;
+            border-radius: 3px;
+            border: 1px solid brown;
+            line-height: 24px;
+            padding: 5px;
+        }
+
+        select{
+            width: 98.3%;
+            border-radius: 3px;
+            border: 1px solid brown;
+            height: 30px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="calc">
+        <h1>Temperature Calculator</h1>
+        <label for="suhu">Dari Suhu:</label><br>
+        <select name="suhu" id="suhu">
+            <option value="">-- Pilih --</option>
+            <option value="c">Celsius (°C)</option>
+            <option value="f">Fahrenheit (°F)</option>
+            <option value="k">Kelvin (K)</option>
+        </select>
+        <br><br>
+        <label for="nilai">Nilai:</label><br>
+        <input type="number" id="nilai" nama="nilai" placeholder="Masukkan angka">
+
+        <div id="res_container">
+            <h3>Hasil Konversi:</h3>
+            <p id="res">Masukkan nilai untuk melihat hasil.</p>
+        </div>
+        <footer>
+            <p>&copy; 2026 2572001 - Joshua Christopher Gunawan. <br>All rights reserved.</p>
+        </footer>
+    </div>
+    <script>
+        const suhu = document.getElementById('suhu');
+        const nilai = document.getElementById('nilai');
+        const res = document.getElementById('res');
+        const units = ['Celsius', 'Fahrenheit', 'Kelvin'];
+
+
+        function calculate() {
+            var angka = parseFloat(nilai.value);
+            var unit = suhu.value;
+            var results = [];
+            var display = '';
+
+            if (isNaN(angka) || unit == '') {
+                res.innerHTML = 'Masukkan nilai untuk melihat hasil.';
+                return;
+            }
+
+            if (unit == 'c') {
+                var celcius = angka;
+                var fahrenheit = (angka * 9 / 5) + 32;
+                var kelvin = angka + 273;
+                results = [celcius, fahrenheit, kelvin];
+            } else if (unit == 'f') {
+                var fahrenheit = angka;
+                var celcius = (angka - 32) * 5 / 9;
+                var kelvin = celcius + 273;
+                results = [celcius, fahrenheit, kelvin];
+            } else if (unit == 'k') {
+                var kelvin = angka;
+                var celcius = angka - 273;
+                var fahrenheit = (celcius * 9 / 5) + 32;
+                results = [celcius, fahrenheit, kelvin];
+            }
+
+            results.forEach(function (value, index) {
+                display += units[index] + ' : ' + value + '<br>';
+            });
+
+            res.innerHTML = display;
+        }
+
+        nilai.addEventListener('input', calculate);
+        suhu.addEventListener('change', calculate);
+
+        </script>
+</body>
+</html>
