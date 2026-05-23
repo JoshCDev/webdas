@@ -1,0 +1,593 @@
+<!-- 2572001 - Joshua Christopher Gunawan -->
+<!DOCTYPE html
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catatan - 2572001</title>
+    <link rel="icon" href="data:,">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #f0f2f7;
+            color: #111;
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+        }
+
+        #loginPage {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-card {
+            width: 400px;
+            border: 1px solid #d9d9d9;
+            background: #fff;
+            padding: 45px 55px;
+        }
+
+        .login-card h1 {
+            margin: 0 0 6px;
+            font-size: 31px;
+            font-weight: 700;
+        }
+
+        .login-card p {
+            margin-bottom: 22px;
+            color: #777;
+            font-size: 16px;
+        }
+
+        label {
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        .login-card .form-control {
+            height: 41px;
+            border-color: #cfcfcf;
+            font-size: 16px;
+        }
+
+        .btn-main {
+            background: #4a90d9;
+            border-color: #4a90d9;
+            color: #fff;
+        }
+
+        .btn-main:hover {
+            background: #357abd;
+            border-color: #357abd;
+            color: #fff;
+        }
+
+        #loginError {
+            display: none;
+            margin: 8px 0 0;
+            color: #dc3545;
+            font-size: 12px;
+        }
+
+        #appPage {
+            display: none;
+        }
+
+        .topbar {
+            height: 43px;
+            padding: 0 23px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #4a90d9;
+            color: #fff;
+        }
+
+        .topbar h1 {
+            margin: 0;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 12px;
+        }
+
+        #btnLogout {
+            padding: 5px 13px;
+            border: none;
+            background: #e53935;
+            color: #fff;
+            font-size: 11px;
+        }
+
+        .app-container {
+            max-width: 680px;
+            margin: 28px auto;
+            padding: 0;
+        }
+
+        .form-card {
+            margin-bottom: 20px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            background: #fff;
+        }
+
+        .form-card h3 {
+            margin: 0 0 12px;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .form-card .form-control,
+        .form-card .form-select {
+            border-color: #ccc;
+            border-radius: 0;
+            font-size: 12px;
+        }
+
+        .form-card .form-control {
+            padding: 7px 8px;
+        }
+
+        .form-card textarea {
+            height: 80px;
+            resize: vertical;
+        }
+
+        .form-card .form-select {
+            width: 78px;
+            padding: 6px 8px;
+        }
+
+        .form-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        #btnSimpan {
+            padding: 7px 18px;
+            border-radius: 0;
+            font-size: 12px;
+        }
+
+        .meta-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            gap: 8px;
+        }
+
+        .filter-btns {
+            display: flex;
+            gap: 6px;
+        }
+
+        .filter-btn {
+            min-width: 44px;
+            padding: 5px 12px;
+            border: 1px solid #cfcfcf;
+            border-radius: 0;
+            background: #fff;
+            color: #111;
+            font-size: 11px;
+            line-height: 1.2;
+        }
+
+        .filter-btn.active {
+            border-color: #4a90d9;
+            background: #4a90d9;
+            color: #fff;
+        }
+
+        .stats-text {
+            color: #999;
+            font-size: 11px;
+        }
+
+        .note-card {
+            margin-bottom: 10px;
+            padding: 14px 16px;
+            border: 1px solid #ddd;
+            background: #fff;
+        }
+
+        .note-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .note-title {
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .note-actions {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .note-actions button {
+            padding: 0;
+            border: none;
+            background: transparent;
+            line-height: 1;
+        }
+
+        .btn-pin {
+            color: #e83e8c;
+            font-size: 13px;
+        }
+
+        .btn-hapus {
+            color: #888;
+            font-size: 11px;
+        }
+
+        .btn-hapus:hover {
+            color: #dc3545;
+        }
+
+        .note-body {
+            margin: 10px 0 9px;
+            color: #333;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .note-footer {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .badge {
+            padding: 3px 7px;
+            border-radius: 0;
+            font-size: 10px;
+            font-weight: 400;
+            line-height: 1;
+            text-transform: lowercase;
+        }
+
+        .badge-kerja {
+            background: #d0e9ff;
+            color: #1565c0;
+        }
+
+        .badge-pribadi {
+            background: #fce4ec;
+            color: #c62828;
+        }
+
+        .badge-ide {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .badge-penting {
+            background: #fff8e1;
+            color: #f57f17;
+        }
+
+        .note-date,
+        .pinned-label {
+            font-size: 10px;
+        }
+
+        .note-date {
+            color: #aaa;
+        }
+
+        .pinned-label {
+            color: #e53935;
+        }
+
+        .empty-msg {
+            padding: 32px 0;
+            color: #aaa;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        #toastMsg {
+            display: none;
+            position: fixed;
+            left: 50%;
+            bottom: 24px;
+            transform: translateX(-50%);
+            padding: 8px 20px;
+            background: #333;
+            color: #fff;
+            font-size: 13px;
+        }
+
+        @media (max-width: 720px) {
+            .app-container {
+                margin: 20px 14px;
+            }
+
+            .login-card {
+                width: calc(100% - 32px);
+                padding: 32px 28px;
+            }
+
+            .meta-row {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .filter-btns {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="loginPage">
+        <div class="login-card">
+            <h1>Catatan Harian</h1>
+            <p>Masuk untuk mulai mencatat</p>
+
+            <label for="name" class="form-label">Nama Pengguna</label>
+            <input type="text" class="form-control mb-3 rounded-0" id="name" placeholder="Contoh: Budi">
+
+            <label for="password" class="form-label">PIN (4 digit)</label>
+            <input type="password" class="form-control mb-4 rounded-0" id="password" placeholder="Masukkan PIN" maxlength="4">
+
+            <button type="button" class="btn btn-main w-100 rounded-0 mb-3" id="btnMasuk">Masuk</button>
+            <p id="loginError">Nama atau PIN salah.</p>
+            <p class="mb-0" style="font-size: 13px; color: #aaa;">Demo: nama <b>budi</b>, PIN <b>1234</b></p>
+        </div>
+    </div>
+
+    <div id="appPage">
+        <div class="topbar">
+            <h1>Catatan Harian</h1>
+            <div class="topbar-right">
+                <span id="namaUser"></span>
+                <button type="button" id="btnLogout">Logout</button>
+            </div>
+        </div>
+
+        <main class="app-container">
+            <div class="form-card">
+                <h3>Tambah Catatan</h3>
+                <input type="text" class="form-control mb-2" id="inputJudul" placeholder="Judul catatan...">
+                <textarea class="form-control mb-3" id="inputIsi" placeholder="Isi catatan..."></textarea>
+                <div class="form-actions">
+                    <select class="form-select" id="selectKategori">
+                        <option value="penting">Penting</option>
+                        <option value="pribadi">Pribadi</option>
+                        <option value="kerja">Kerja</option>
+                        <option value="ide">Ide</option>
+                    </select>
+                    <button type="button" class="btn btn-main" id="btnSimpan">Simpan Catatan</button>
+                </div>
+            </div>
+
+            <div class="meta-row">
+                <div class="filter-btns">
+                    <button type="button" class="filter-btn active" data-filter="semua">Semua</button>
+                    <button type="button" class="filter-btn" data-filter="pribadi">Pribadi</button>
+                    <button type="button" class="filter-btn" data-filter="kerja">Kerja</button>
+                    <button type="button" class="filter-btn" data-filter="ide">Ide</button>
+                    <button type="button" class="filter-btn" data-filter="penting">Penting</button>
+                </div>
+                <span class="stats-text" id="statsText"></span>
+            </div>
+
+            <div id="noteList"></div>
+        </main>
+    </div>
+
+    <div id="toastMsg"></div>
+
+    <script>
+        var VALID_NAMA = "budi";
+        var VALID_PIN = "1234";
+        var activeFilter = "semua";
+
+        function showToast(msg) {
+            $("#toastMsg").text(msg).stop(true).hide().fadeIn(300).delay(1600).fadeOut(400);
+        }
+
+        function formatDate(ts) {
+            var d = new Date(ts);
+            var jam = d.getHours().toString().padStart(2, "0");
+            var menit = d.getMinutes().toString().padStart(2, "0");
+            return d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear() + " " + jam + ":" + menit;
+        }
+
+        function getBadgeClass(kat) {
+            var map = {
+                kerja: "badge-kerja",
+                pribadi: "badge-pribadi",
+                ide: "badge-ide",
+                penting: "badge-penting"
+            };
+            return map[kat] || "";
+        }
+
+        function getNotes() {
+            var raw = localStorage.getItem("catatanList");
+            return raw ? JSON.parse(raw) : [];
+        }
+
+        function saveNotes(arr) {
+            localStorage.setItem("catatanList", JSON.stringify(arr));
+        }
+
+        function renderNotes() {
+            var notes = getNotes();
+            var filtered = [];
+
+            notes.sort(function (a, b) {
+                if (a.pinned !== b.pinned) {
+                    return b.pinned - a.pinned;
+                }
+                return b.timestamp - a.timestamp;
+            });
+
+            if (activeFilter === "semua") {
+                filtered = notes;
+                $("#statsText").text(filtered.length + " catatan dari total " + notes.length);
+            } else {
+                filtered = $.grep(notes, function (n) {
+                    return n.kategori === activeFilter;
+                });
+                $("#statsText").text(filtered.length + " catatan (" + activeFilter + ") dari total " + notes.length);
+            }
+
+            $("#noteList").empty();
+
+            if (filtered.length === 0) {
+                $("#noteList").append('<p class="empty-msg">Belum ada catatan.</p>');
+                return;
+            }
+
+            $.each(filtered, function (i, n) {
+                var pinnedHTML = "";
+                var pinTitle = "Sematkan";
+
+                if (n.pinned) {
+                    pinnedHTML = '<span class="pinned-label">📌 Disematkan</span>';
+                    pinTitle = "Lepas sematan";
+                }
+
+                var cardHTML = "";
+                cardHTML += '<div class="note-card" data-id="' + n.id + '">';
+                cardHTML += '  <div class="note-header">';
+                cardHTML += '    <span class="note-title">' + n.judul + '</span>';
+                cardHTML += '    <div class="note-actions">';
+                cardHTML += '      <button type="button" class="btn-pin" title="' + pinTitle + '">📍</button>';
+                cardHTML += '      <button type="button" class="btn-hapus">Hapus</button>';
+                cardHTML += '    </div>';
+                cardHTML += '  </div>';
+                cardHTML += '  <div class="note-body">' + n.isi + '</div>';
+                cardHTML += '  <div class="note-footer">';
+                cardHTML += '    <span class="badge ' + getBadgeClass(n.kategori) + '">' + n.kategori + '</span>';
+                cardHTML += '    <span class="note-date">' + formatDate(n.timestamp) + '</span>';
+                cardHTML += pinnedHTML;
+                cardHTML += '  </div>';
+                cardHTML += '</div>';
+
+                $("#noteList").append(cardHTML);
+            });
+        }
+
+        $(document).ready(function () {
+            var namaUser = localStorage.getItem("namaUser");
+
+            if (namaUser) {
+                $("#loginPage").hide();
+                $("#appPage").show();
+                $("#namaUser").text("Halo, " + namaUser + "!");
+                renderNotes();
+            }
+
+            $("#btnMasuk").on("click", function () {
+                var nama = $.trim($("#name").val()).toLowerCase();
+                var pin = $("#password").val();
+
+                if (nama === VALID_NAMA && pin === VALID_PIN) {
+                    localStorage.setItem("namaUser", nama);
+                    $("#loginError").hide();
+                    $("#loginPage").hide();
+                    $("#appPage").show();
+                    $("#namaUser").text("Halo, " + nama + "!");
+                    renderNotes();
+                } else {
+                    $("#loginError").show();
+                }
+            });
+
+            $("#btnLogout").on("click", function () {
+                localStorage.removeItem("namaUser");
+                location.replace(location.href);
+            });
+
+            $("#btnSimpan").on("click", function () {
+                var judul = $.trim($("#inputJudul").val());
+                var isi = $.trim($("#inputIsi").val());
+                var kat = $("#selectKategori").val();
+                var now = Date.now();
+                var notes;
+
+                if (!judul || !isi) {
+                    showToast("Judul dan isi tidak boleh kosong!");
+                    return;
+                }
+
+                notes = getNotes();
+                notes.unshift({
+                    id: now,
+                    judul: judul,
+                    isi: isi,
+                    kategori: kat,
+                    timestamp: now,
+                    pinned: false
+                });
+
+                saveNotes(notes);
+                $("#inputJudul").val("");
+                $("#inputIsi").val("");
+                renderNotes();
+            });
+
+            $(document).on("click", ".filter-btn", function () {
+                $(".filter-btn").removeClass("active");
+                $(this).addClass("active");
+                activeFilter = $(this).data("filter");
+                renderNotes();
+            });
+
+            $(document).on("click", ".btn-hapus", function () {
+                var id = parseInt($(this).closest(".note-card").data("id"), 10);
+                var notes = getNotes();
+
+                notes = $.grep(notes, function (n) {
+                    return n.id !== id;
+                });
+
+                saveNotes(notes);
+                renderNotes();
+            });
+
+            $(document).on("click", ".btn-pin", function () {
+                var id = parseInt($(this).closest(".note-card").data("id"), 10);
+                var notes = getNotes();
+
+                $.each(notes, function (i, n) {
+                    if (n.id === id) {
+                        n.pinned = !n.pinned;
+                    }
+                });
+
+                saveNotes(notes);
+                renderNotes();
+            });
+        });
+    </script>
+</body>
+
+</html>
